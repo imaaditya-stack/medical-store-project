@@ -2,6 +2,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate
+from django.http.response import HttpResponseRedirect
 
 # DRF imports
 from rest_framework.views import APIView
@@ -126,7 +127,11 @@ class StoreTypeListing(ListAPIView):
 
 
 def ServeReactFrontend(request):
+    """
+    View to serving frontend application
+    """
     return render(request, 'index.html')
+
 
 
 
