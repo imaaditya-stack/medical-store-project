@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath backend project.wsgi:application --preload
