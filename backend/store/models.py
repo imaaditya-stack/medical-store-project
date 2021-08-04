@@ -25,6 +25,7 @@ class StoreType(models.Model):
 class MedicalStore(AbstractBaseUser):
     store_name                  =   models.CharField(max_length=60, default=None)
     username                    =   models.CharField(max_length=45, default=None, unique=True)
+    password                    =   models.CharField(max_length=10, default=None, blank=True)
     store_email_id              =   models.CharField(max_length=100, null=True, blank=True)
     mobile_number               =   models.CharField(max_length=45, default=None, null=True, blank=True)
     address_1                   =   models.CharField(max_length=100, default=None)
