@@ -14,24 +14,22 @@ const addStoreSchema = (update) => {
         password: yup
           .string()
           .required("Password is a required field")
-          .matches(/^(|.{6,10})$/, "Password must be between 5-60 characters"),
+          .matches(/^(|.{6,10})$/, "Password must be between 6-10 characters"),
       }
     : {
         password: yup
           .string()
-          .matches(/^(|.{6,10})$/, "Password must be between 5-60 characters"),
+          .matches(/^(|.{6,10})$/, "Password must be between 6-10 characters"),
       };
   const schema = yup.object().shape({
     store_name: yup
       .string()
       .required("Store name is a required field")
-      .min(3, "Store name must be at least 5 characters")
-      .max(60, "Store name must not be greater than 60 characters"),
+      .matches(/^(|.{3,60})$/, "Store name must be between 3-60 characters"),
     username: yup
       .string()
       .required("Username is a required field")
-      .min(3, "Username must be at least 3 characters")
-      .max(45, "Username must not be greater than 45 characters"),
+      .matches(/^(|.{3,45})$/, "Username must be between 3-45 characters"),
     ...password,
     store_email_id: yup.string().email("Invalid Email").notRequired(),
     mobile_number: yup.string().matches(phoneRegExp, {
