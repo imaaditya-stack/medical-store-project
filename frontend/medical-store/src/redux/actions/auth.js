@@ -23,7 +23,6 @@ const login = (data, history) => async (dispatch) => {
   } catch (error) {
     if (error.response) {
       if (error.response.status === 404) {
-        // alert(error.response.data?.MSG);
         dispatch(setAlert(error.response.data?.MSG, "danger"));
       }
     }
