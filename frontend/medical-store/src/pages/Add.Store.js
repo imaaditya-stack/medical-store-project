@@ -28,7 +28,7 @@ const StoreForm = (props) => {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(addStoreSchema),
+    resolver: yupResolver(addStoreSchema(update)),
   });
 
   const onSubmit = (formData) => {
@@ -40,7 +40,6 @@ const StoreForm = (props) => {
   useEffect(() => {
     // Fetch All Store Types
     const fetchStoreTypes = async () => {
-      console.log("FETCHING STORE TYPES....");
       try {
         const res = await AXIOS_CLIENT.get("store/types/");
         dispatch({ type: STORE_TYPES, payload: res.data });

@@ -35,7 +35,6 @@ const CrudComponent = ({
   };
 
   const handleEdit = (record) => {
-    // console.log(record);
     history.push({
       pathname: `${href}`,
       state: { record, update: true },
