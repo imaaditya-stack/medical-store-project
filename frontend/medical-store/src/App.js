@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { authStateCheck, authError } from "./redux/actions/auth";
 import { getAuthToken } from "./utils/auth";
 import PrivateRoute from "./components/Private.Route";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const App = () => {
         <PrivateRoute path="/add-store" component={StoreForm} />
         <PrivateRoute path="/medicines" component={Medicine} />
         <PrivateRoute path="/add-medicine" component={MedicineForm} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </Router>
   );

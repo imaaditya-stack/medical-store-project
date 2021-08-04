@@ -86,3 +86,18 @@ a {
   align-items: center;
   min-height: 100vh;
 }
+
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.error-page h1 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 60px;
+}
