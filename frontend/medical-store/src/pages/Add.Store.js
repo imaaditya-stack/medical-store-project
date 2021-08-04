@@ -28,11 +28,10 @@ const StoreForm = (props) => {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(addStoreSchema(update)),
+    resolver: yupResolver(addStoreSchema),
   });
 
   const onSubmit = (formData) => {
-    // console.log(formData);
     !update
       ? dispatch(addStore(formData, history))
       : dispatch(updateStore({ ...formData, id: data?.id }, history));
@@ -89,21 +88,17 @@ const StoreForm = (props) => {
               <Error error={errors.username?.message} />
             </Form.Group>
           </Col>
-          {!update && (
-            <Col lg={6}>
-              <Form.Group className="mb-3">
-                <Form.Label>
-                  Password <span className="text-danger">*</span>{" "}
-                </Form.Label>
-                <Form.Control
-                  type="password"
-                  defaultValue={data?.password}
-                  {...register("password")}
-                />
-                <Error error={errors.password?.message} />
-              </Form.Group>
-            </Col>
-          )}
+
+          <Col lg={6}>
+            <Form.Group className="mb-3">
+              <Form.Label>
+                {!update ? "Password" : "New Password"}{" "}
+                <span className="text-danger">*</span>{" "}
+              </Form.Label>
+              <Form.Control type="password" {...register("password")} />
+              <Error error={errors.password?.message} />
+            </Form.Group>
+          </Col>
 
           <Col lg={6}>
             <Form.Group className="mb-3">
