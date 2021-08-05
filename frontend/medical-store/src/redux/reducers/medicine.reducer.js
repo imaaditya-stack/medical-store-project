@@ -42,7 +42,7 @@ const medReducer = (state = INIT_STATE, action) => {
     case ADD_MED: {
       return {
         ...state,
-        meds: [...state.meds, action.payload],
+        meds: [action.payload, ...state.meds],
       };
     }
     case UPDATE_MED: {

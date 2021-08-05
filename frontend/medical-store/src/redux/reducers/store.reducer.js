@@ -42,7 +42,7 @@ const storeReducer = (state = INIT_STATE, action) => {
     case ADD_STORE: {
       return {
         ...state,
-        stores: [...state.stores, action.payload],
+        stores: [action.payload, ...state.stores],
       };
     }
     case UPDATE_STORE: {
