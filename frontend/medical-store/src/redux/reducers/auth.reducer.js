@@ -11,7 +11,6 @@ const authReducer = (state = INIT_STATE, action) => {
     case LOGOUT:
       return {
         ...state,
-        user: null,
         isAuthenticated: false,
         loading: false,
       };
