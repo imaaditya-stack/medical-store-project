@@ -5,6 +5,8 @@ import {
   DELETE_STORE_ERROR,
   ADD_STORE,
   UPDATE_STORE,
+  DELETE_MED,
+  LOGOUT,
 } from "./action.types";
 import { AXIOS_CLIENT } from "../../api/axios.config";
 import { setAlert } from "./alert";
@@ -57,14 +59,18 @@ const updateStore = (data, history) => async (dispatch) => {
 
 const deleteStore = (data, history, currentstores) => async (dispatch) => {
   dispatch({ type: DELETE_STORE, payload: data });
+  dispatch({ type: DELETE_MED, payload: { id: data.id, cascade: true } });
   try {
     const res = await AXIOS_CLIENT.delete("store/", { data });
     dispatch(setAlert(res.data?.MSG, "success"));
   } catch (error) {
     if (error) {
-      console.log(error.response);
-      dispatch({ type: DELETE_STORE_ERROR, payload: currentstores });
-      dispatch(setAlert("Operation Failed !", "danger"));
+      if (error.response?.status === 401) {
+        dispatch({ type: LOGOUT });
+      } else {
+        dispatch({ type: DELETE_STORE_ERROR, payload: currentstores });
+        dispatch(setAlert("Operation Failed !", "danger"));
+      }
     }
   }
 };

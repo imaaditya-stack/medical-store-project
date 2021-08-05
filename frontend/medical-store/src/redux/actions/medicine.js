@@ -38,8 +38,9 @@ const updateMed = (data, history) => async (dispatch) => {
     dispatch(setAlert(res.data?.MSG, "success"));
     history.push("/medicines");
   } catch (error) {
+    console.log(error.response);
     if (error) {
-      dispatch(setAlert("Operation Failed !", "success"));
+      dispatch(setAlert("Operation Failed !", "danger"));
     }
   }
 };

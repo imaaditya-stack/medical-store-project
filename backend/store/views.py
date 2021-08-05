@@ -37,10 +37,12 @@ class LoginView(APIView):
         if user is not None:
 
             # generate auth token
-            try:
-                token = Token.objects.get(user_id=user.id)
-            except Token.DoesNotExist:
-                token = Token.objects.create(user=user)
+            # try:
+            #     token = Token.objects.get(user_id=user.id)
+            # except Token.DoesNotExist:
+            #     token = Token.objects.create(user=user)
+            
+            token, _ = Token.objects.get_or_create(user=user)
 
             serializer = StoreSerializer(user)
             return Response(data={'token': token.key, 'user': serializer.data}, status=status.HTTP_200_OK)
@@ -111,8 +113,17 @@ class StoreView(APIView):
     def delete(self, request, format=None):
 
         instance = get_object_or_404(MedicalStore, pk=request.data.get('id'))
-        instance.delete()
-        return Response(data={'MSG': 'RECORD DELETED SUCCESSFULLY'}, status=status.HTTP_200_OK)
+
+        if instance.id == request.user.id:
+            try:
+                Token.objects.get(user=request.user).delete()
+                instance.delete()
+            except Token.DoesNotExist:
+                pass
+            return Response(data={'MSG': 'DELETED LOGGED IN USER'}, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            instance.delete()
+            return Response(data={'MSG': 'RECORD DELETED SUCCESSFULLY'}, status=status.HTTP_200_OK)
 
         
 class StoreTypeListing(ListAPIView):

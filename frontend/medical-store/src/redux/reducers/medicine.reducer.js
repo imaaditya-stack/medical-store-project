@@ -54,10 +54,17 @@ const medReducer = (state = INIT_STATE, action) => {
       };
     }
     case DELETE_MED: {
-      return {
-        ...state,
-        meds: state.meds.filter((med) => med.id !== action.payload.id),
-      };
+      return action.payload?.cascade
+        ? {
+            ...state,
+            meds: state.meds.filter(
+              (med) => med.store_id !== action.payload.id
+            ),
+          }
+        : {
+            ...state,
+            meds: state.meds.filter((med) => med.id !== action.payload.id),
+          };
     }
     case DELETE_MED_ERROR: {
       return {
