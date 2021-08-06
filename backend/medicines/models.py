@@ -22,7 +22,7 @@ class MedicineDetail(models.Model):
     medicine_price              =   models.DecimalField(max_digits=5, decimal_places=2, default=None)
     medicine_quantity           =   models.IntegerField(null=True, blank=True)
     medicine_expiry_date        =   models.DateField()
-    store_id                    =   models.ForeignKey(to=MedicalStore, on_delete=models.CASCADE, related_name="medicines")
+    store_id                    =   models.ForeignKey(to=MedicalStore, on_delete=models.SET_NULL, null=True, blank=True, related_name="medicines")
     medicine_type_id            =   models.ForeignKey(to=MedicineType, on_delete=models.CASCADE, related_name="medicines")
     created_at                  =   models.DateTimeField(auto_now_add=True)
     modified_at                 =   models.DateTimeField(auto_now_add=True)

@@ -1,15 +1,14 @@
 # Django imports
 from django.http import request
-from django.shortcuts import get_object_or_404, render
-from django.contrib.auth.hashers import make_password, check_password
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate
 
 # DRF imports
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
-from rest_framework import serializers, status, exceptions, viewsets
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework import status, exceptions
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 
@@ -35,15 +34,8 @@ class LoginView(APIView):
         user = authenticate(username=username, password=password)
 
         if user is not None:
-
-            # generate auth token
-            # try:
-            #     token = Token.objects.get(user_id=user.id)
-            # except Token.DoesNotExist:
-            #     token = Token.objects.create(user=user)
             
             token, _ = Token.objects.get_or_create(user=user)
-
             serializer = StoreSerializer(user)
             return Response(data={'token': token.key, 'user': serializer.data}, status=status.HTTP_200_OK)
 

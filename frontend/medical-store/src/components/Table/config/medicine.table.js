@@ -31,7 +31,11 @@ export const medicineTableCols = (handleEdit, handleDelete) => {
     {
       title: "Store Name",
       render: (rowData) => {
-        return <span>{rowData.store_id_label}</span>;
+        return (
+          <span>
+            {rowData.store_id ? rowData.store_id_label : "NOT SPECIFIED"}
+          </span>
+        );
       },
     },
   ];

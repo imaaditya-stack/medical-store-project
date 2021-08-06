@@ -59,7 +59,7 @@ const updateStore = (data, history) => async (dispatch) => {
 
 const deleteStore = (data, history, currentstores) => async (dispatch) => {
   dispatch({ type: DELETE_STORE, payload: data });
-  dispatch({ type: DELETE_MED, payload: { id: data.id, cascade: true } });
+  dispatch({ type: DELETE_MED, payload: { id: data.id, storeDeleted: true } });
   try {
     const res = await AXIOS_CLIENT.delete("store/", { data });
     dispatch(setAlert(res.data?.MSG, "success"));

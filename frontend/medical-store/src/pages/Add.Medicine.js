@@ -54,7 +54,6 @@ const MedicineForm = (props) => {
         .then(
           axios.spread((typesResponse, storeResponse) => {
             // Set data for dynamic select options
-            console.log("DATA FETCHED FROM SERVER");
             dispatch({ type: MED_TYPES, payload: typesResponse.data });
             dispatch({ type: LOAD_STORES, payload: storeResponse.data });
             reset({

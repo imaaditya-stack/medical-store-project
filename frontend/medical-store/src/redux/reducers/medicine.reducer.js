@@ -54,11 +54,13 @@ const medReducer = (state = INIT_STATE, action) => {
       };
     }
     case DELETE_MED: {
-      return action.payload?.cascade
+      return action.payload?.storeDeleted
         ? {
             ...state,
-            meds: state.meds.filter(
-              (med) => med.store_id !== action.payload.id
+            meds: state.meds.map((med) =>
+              med.store_id === action.payload.id
+                ? { ...med, store_id: null }
+                : med
             ),
           }
         : {

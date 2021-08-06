@@ -2,10 +2,10 @@ import axios from "axios";
 import { getAuthToken } from "../utils/auth";
 
 //DEV
-const BASE_URL = "http://localhost:8000/api/";
+// const BASE_URL = "http://localhost:8000/api/";
 
 // PROD;
-// const BASE_URL = "https://medical-store-project.herokuapp.com/api/";
+const BASE_URL = "https://medical-store-project.herokuapp.com/api/";
 
 const defaultOptions = {
   baseURL: BASE_URL,
