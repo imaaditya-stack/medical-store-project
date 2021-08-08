@@ -3,12 +3,11 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { login } from "../redux/actions/auth";
-import { useDispatch } from "react-redux";
-import { loginSchema } from "../utils/yup.schemas";
+import { loginSchema } from "../validations/yup.schemas";
 import Error from "../components/Error";
 import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
 import AlertDialog from "../components/Alert";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Login = () => {
   const alerts = useSelector((state) => state.alertReducer) || [];
@@ -43,7 +42,6 @@ const Login = () => {
               type="text"
               placeholder="Enter username"
               {...register("username")}
-              // defaultValue="prashantM"
             />
             <Error error={errors.username?.message} />
           </Form.Group>
@@ -54,7 +52,6 @@ const Login = () => {
               type="password"
               placeholder="Password"
               {...register("password")}
-              // defaultValue="pra123"
             />
             <Error error={errors.password?.message} />
           </Form.Group>

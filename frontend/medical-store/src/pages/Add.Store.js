@@ -7,13 +7,13 @@ import { addStore, updateStore } from "../redux/actions/store";
 import { useHistory } from "react-router-dom";
 import { STORE_TYPES, STORE_TYPES_ERROR } from "../redux/actions/action.types";
 import { AXIOS_CLIENT } from "../api/axios.config";
-import { addStoreSchema } from "../utils/yup.schemas";
+import { addStoreSchema } from "../validations/yup.schemas";
 import withDrawer from "../components/Drawer/withDrawer";
 import FormFooter from "../components/FormFooter";
 import Error from "../components/Error";
 import AlertDialog from "../components/Alert";
 
-const StoreForm = (props) => {
+const AddStore = (props) => {
   const { record: data, update } = props.location.state || {};
 
   const { storeTypes } = useSelector((state) => state.storeReducer) || {};
@@ -216,4 +216,4 @@ const StoreForm = (props) => {
   );
 };
 
-export default withDrawer({ title: "Add Store" })(StoreForm);
+export default withDrawer({ title: "Add Store" })(AddStore);

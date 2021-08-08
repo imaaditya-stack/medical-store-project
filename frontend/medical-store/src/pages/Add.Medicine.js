@@ -8,14 +8,14 @@ import { AXIOS_CLIENT } from "../api/axios.config";
 import { useDispatch, useSelector } from "react-redux";
 import { addMed, updateMed } from "../redux/actions/medicine";
 import { useHistory } from "react-router-dom";
-import { addMedicineSchema } from "../utils/yup.schemas";
+import { addMedicineSchema } from "../validations/yup.schemas";
 import withDrawer from "../components/Drawer/withDrawer";
 import FormFooter from "../components/FormFooter";
 import Error from "../components/Error";
 import AlertDialog from "../components/Alert";
 import { LOAD_STORES, MED_TYPES } from "../redux/actions/action.types";
 
-const MedicineForm = (props) => {
+const AddMedicine = (props) => {
   const { record: data, update } = props.location.state || {};
 
   const alerts = useSelector((state) => state.alertReducer) || [];
@@ -192,4 +192,4 @@ const MedicineForm = (props) => {
   );
 };
 
-export default withDrawer({ title: "Add Medicine" })(MedicineForm);
+export default withDrawer({ title: "Add Medicine" })(AddMedicine);

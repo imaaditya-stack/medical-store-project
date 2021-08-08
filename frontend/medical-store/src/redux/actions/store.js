@@ -45,7 +45,6 @@ const updateStore = (data, history) => async (dispatch) => {
     history.push("/stores");
   } catch (error) {
     if (error) {
-      console.log(error.response);
       if (error.response?.status === 400) {
         if (error.response?.data.username) {
           dispatch(setAlert(error.response.data.username, "danger"));

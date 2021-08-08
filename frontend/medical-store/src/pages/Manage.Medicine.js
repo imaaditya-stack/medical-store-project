@@ -4,7 +4,7 @@ import withDrawer from "../components/Drawer/withDrawer";
 import { medicineTableCols } from "../components/Table/config/medicine.table";
 import CrudComponent from "../components/CrudComponent";
 
-const Medicine = () => {
+const ManageMedicine = () => {
   const { meds, loading } = useSelector((state) => state.medReducer) || {};
 
   return (
@@ -20,4 +20,4 @@ const Medicine = () => {
   );
 };
 
-export default withDrawer({ title: "Manage Medicine" })(Medicine);
+export default withDrawer({ title: "Manage Medicine" })(ManageMedicine);
