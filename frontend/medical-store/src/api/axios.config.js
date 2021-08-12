@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAuthToken } from "../utils/auth";
+import { getAuthToken } from "../Utils/auth";
 
 //DEV
 const BASE_URL = "http://localhost:8000/api/";

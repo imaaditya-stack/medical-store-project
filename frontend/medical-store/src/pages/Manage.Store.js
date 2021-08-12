@@ -1,8 +1,8 @@
-import { deleteStore, loadStores } from "../redux/actions/store";
+import { deleteStore, loadStores } from "../Redux/actions/store";
 import { useSelector } from "react-redux";
-import withDrawer from "../components/Drawer/withDrawer";
-import { storeTableCols } from "../components/Table/config/store.table";
-import CrudComponent from "../components/CrudComponent";
+import withDrawer from "../Layout/Drawer/withDrawer";
+import { storeTableCols } from "../Components/Table/config/store.table";
+import CrudComponent from "../Components/CrudComponent";
 
 const ManageStore = () => {
   const { stores, loading } = useSelector((state) => state.storeReducer) || {};

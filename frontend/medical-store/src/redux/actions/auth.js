@@ -1,6 +1,6 @@
 import { AUTH_SUCCESS, AUTH_ERROR, LOGOUT } from "./action.types";
-import { handleAuthentication } from "../../utils/auth";
-import { AXIOS_CLIENT } from "../../api/axios.config";
+import { handleAuthentication } from "../../Utils/auth";
+import { AXIOS_CLIENT } from "../../Api/axios.config";
 import { setAlert } from "./alert";
 
 const authStateCheck = () => async (dispatch) => {

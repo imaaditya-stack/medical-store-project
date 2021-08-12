@@ -1,9 +1,9 @@
 import { actionConfig } from "./common";
 
 // This is the columns config for Medicine table
-export const medicineTableCols = (handleEdit, handleDelete) => {
+export const medicineTableCols = (handleEdit, handleShow) => {
   return [
-    actionConfig(handleEdit, handleDelete),
+    actionConfig(handleEdit, handleShow),
     {
       title: "Medicine Name",
       render: (rowData) => {

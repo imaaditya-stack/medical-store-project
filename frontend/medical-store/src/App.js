@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authStateCheck, authError } from "./redux/actions/auth";
-import { getAuthToken } from "./utils/auth";
-import PrivateRoute from "./components/Private.Route";
+import { authStateCheck, authError } from "./Redux/actions/auth";
+import { getAuthToken } from "./Utils/auth";
+import PrivateRoute from "./Components/Private.Route";
 import {
   Login,
   AddMedicine,
@@ -11,7 +11,7 @@ import {
   ManageMedicine,
   ManageStore,
   NotFound,
-} from "./pages";
+} from "./Pages";
 
 const App = () => {
   const dispatch = useDispatch();

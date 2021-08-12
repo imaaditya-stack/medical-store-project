@@ -1,4 +1,3 @@
-import React from "react";
 import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
 import StoreIcon from "@material-ui/icons/Store";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";

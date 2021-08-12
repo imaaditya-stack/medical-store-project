@@ -1,9 +1,9 @@
 import { actionConfig } from "./common";
 
 // This is the columns config for Store table
-export const storeTableCols = (handleEdit, handleDelete, handleShow) => {
+export const storeTableCols = (handleEdit, handleShow) => {
   return [
-    actionConfig(handleEdit, handleDelete, handleShow),
+    actionConfig(handleEdit, handleShow),
     {
       title: "Store Name",
       render: (rowData) => {

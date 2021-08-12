@@ -1,8 +1,8 @@
-import { deleteMed, loadMeds } from "../redux/actions/medicine";
+import { deleteMed, loadMeds } from "../Redux/actions/medicine";
 import { useSelector } from "react-redux";
-import withDrawer from "../components/Drawer/withDrawer";
-import { medicineTableCols } from "../components/Table/config/medicine.table";
-import CrudComponent from "../components/CrudComponent";
+import withDrawer from "../Layout/Drawer/withDrawer";
+import { medicineTableCols } from "../Components/Table/config/medicine.table";
+import CrudComponent from "../Components/CrudComponent";
 
 const ManageMedicine = () => {
   const { meds, loading } = useSelector((state) => state.medReducer) || {};

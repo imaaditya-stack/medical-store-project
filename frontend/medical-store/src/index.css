@@ -13,6 +13,10 @@ a {
   text-decoration: none !important;
 }
 
+.show {
+  z-index: 9999 !important;
+}
+
 .login_container {
   background-color: var(--blue) !important;
   width: 100% !important;

@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import { ConfirmModal } from "../Modal";
 import PropTypes from "prop-types";
 
-const CustomizedTables = ({ cols, data, handleDelete, show, handleClose }) => {
+const DataTable = ({ cols, data, handleDelete, show, handleClose }) => {
   const classes = useStyles();
   return (
     <TableContainer component={Paper}>
@@ -68,7 +68,7 @@ const useStyles = makeStyles({
   },
 });
 
-CustomizedTables.propTypes = {
+DataTable.propTypes = {
   cols: PropTypes.array,
   data: PropTypes.array,
   show: PropTypes.bool,
@@ -76,4 +76,4 @@ CustomizedTables.propTypes = {
   handleClose: PropTypes.func,
 };
 
-export default CustomizedTables;
+export default DataTable;

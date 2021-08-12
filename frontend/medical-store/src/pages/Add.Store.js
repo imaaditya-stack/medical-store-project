@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector, useDispatch } from "react-redux";
-import { addStore, updateStore } from "../redux/actions/store";
+import { addStore, updateStore } from "../Redux/actions/store";
 import { useHistory } from "react-router-dom";
-import { STORE_TYPES, STORE_TYPES_ERROR } from "../redux/actions/action.types";
-import { AXIOS_CLIENT } from "../api/axios.config";
-import { addStoreSchema } from "../validations/yup.schemas";
-import withDrawer from "../components/Drawer/withDrawer";
-import FormFooter from "../components/FormFooter";
-import Error from "../components/Error";
-import AlertDialog from "../components/Alert";
+import { STORE_TYPES, STORE_TYPES_ERROR } from "../Redux/actions/action.types";
+import { AXIOS_CLIENT } from "../Api/axios.config";
+import { addStoreSchema } from "../Validations/yup.schemas";
+import withDrawer from "../Layout/Drawer/withDrawer";
+import FormFooter from "../Components/FormFooter";
+import Error from "../Components/Error";
+import AlertDialog from "../Components/Alert";
 
 const AddStore = (props) => {
   const { record: data, update } = props.location.state || {};

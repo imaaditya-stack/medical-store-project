@@ -8,7 +8,7 @@ import {
   DELETE_MED,
   LOGOUT,
 } from "./action.types";
-import { AXIOS_CLIENT } from "../../api/axios.config";
+import { AXIOS_CLIENT } from "../../Api/axios.config";
 import { setAlert } from "./alert";
 
 const loadStores = () => async (dispatch) => {

@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import moment from "moment";
-import { AXIOS_CLIENT } from "../api/axios.config";
+import { AXIOS_CLIENT } from "../Api/axios.config";
 import { useDispatch, useSelector } from "react-redux";
-import { addMed, updateMed } from "../redux/actions/medicine";
+import { addMed, updateMed } from "../Redux/actions/medicine";
 import { useHistory } from "react-router-dom";
-import { addMedicineSchema } from "../validations/yup.schemas";
-import withDrawer from "../components/Drawer/withDrawer";
-import FormFooter from "../components/FormFooter";
-import Error from "../components/Error";
-import AlertDialog from "../components/Alert";
-import { LOAD_STORES, MED_TYPES } from "../redux/actions/action.types";
+import { addMedicineSchema } from "../Validations/yup.schemas";
+import withDrawer from "../Layout/Drawer/withDrawer";
+import FormFooter from "../Components/FormFooter";
+import Error from "../Components/Error";
+import AlertDialog from "../Components/Alert";
+import { LOAD_STORES, MED_TYPES } from "../Redux/actions/action.types";
 
 const AddMedicine = (props) => {
   const { record: data, update } = props.location.state || {};

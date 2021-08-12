@@ -2,11 +2,11 @@ import { Form, Container, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { login } from "../redux/actions/auth";
-import { loginSchema } from "../validations/yup.schemas";
-import Error from "../components/Error";
+import { login } from "../Redux/actions/auth";
+import { loginSchema } from "../Validations/yup.schemas";
+import Error from "../Components/Error";
 import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
-import AlertDialog from "../components/Alert";
+import AlertDialog from "../Components/Alert";
 import { useSelector, useDispatch } from "react-redux";
 
 const Login = () => {

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import Loader from "../components/Loader";
+import Loader from "../Components/Loader";
 import AddIcon from "@material-ui/icons/Add";
-import CustomizedTables from "../components/Table/Table";
+import DataTable from "../Components/Table/Table";
 import AlertDialog from "./Alert";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { RESET_ALERTS } from "../redux/actions/action.types";
+import { RESET_ALERTS } from "../Redux/actions/action.types";
 
 const CrudComponent = ({
   data,
@@ -69,7 +69,7 @@ const CrudComponent = ({
       ) : (
         <>
           <AlertDialog alerts={alerts} />
-          <CustomizedTables
+          <DataTable
             cols={tableConfig(handleEdit, handleShow)}
             data={data}
             show={show}

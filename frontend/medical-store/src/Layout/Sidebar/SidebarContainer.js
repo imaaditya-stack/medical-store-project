@@ -1,9 +1,8 @@
-import React from "react";
 import { ListItem, List, ListItemIcon, ListItemText } from "@material-ui/core";
 import { SidebarLinks } from "./SidebarLinks";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout } from "../../redux/actions/auth";
+import { logout } from "../../Redux/actions/auth";
 
 const SidebarContainer = () => {
   const dispatch = useDispatch();
