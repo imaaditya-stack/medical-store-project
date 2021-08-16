@@ -38,5 +38,15 @@ export const medicineTableCols = (handleEdit, handleShow) => {
         );
       },
     },
+    {
+      title: "Company Name",
+      render: (rowData) => {
+        return (
+          <span>
+            {rowData.company_id ? rowData.company_id_label : "NOT SPECIFIED"}
+          </span>
+        );
+      },
+    },
   ];
 };

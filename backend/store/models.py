@@ -52,6 +52,3 @@ class MedicalStore(AbstractBaseUser):
         return str(self.store_name) 
 
 
-
-
-

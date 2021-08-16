@@ -7,6 +7,7 @@ class MedicineSerializer(ModelSerializer):
 
     medicine_type_id_label = CharField(source='medicine_type_id.medicine_type_name', read_only=True)
     store_id_label = CharField(source='store_id.store_name', read_only=True)
+    company_id_label = CharField(source='company_id.company_name', read_only=True)
 
     class Meta:
         model = MedicineDetail

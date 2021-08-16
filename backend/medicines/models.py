@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from store.models import MedicalStore
+from company.models import Company
 
 class MedicineType(models.Model):
     medicine_type_name          =   models.CharField(max_length=255, default=None)
@@ -24,6 +25,7 @@ class MedicineDetail(models.Model):
     medicine_expiry_date        =   models.DateField()
     store_id                    =   models.ForeignKey(to=MedicalStore, on_delete=models.SET_NULL, null=True, blank=True, related_name="medicines")
     medicine_type_id            =   models.ForeignKey(to=MedicineType, on_delete=models.CASCADE, related_name="medicines")
+    company_id                  =   models.ForeignKey(to=Company, on_delete=models.SET_NULL, related_name="medicines", null=True, blank=True)
     created_at                  =   models.DateTimeField(auto_now_add=True)
     modified_at                 =   models.DateTimeField(auto_now_add=True)
 

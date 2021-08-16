@@ -19,4 +19,9 @@ export const SidebarLinks = [
     icon: <LocalHospitalIcon />,
     href: "/medicines",
   },
+  {
+    title: "Manage Company",
+    icon: <StoreIcon />,
+    href: "/companies",
+  },
 ];

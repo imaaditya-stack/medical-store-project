@@ -84,6 +84,7 @@ const addMedicineSchema = yup.object().shape({
     .transform((value) => (isNaN(value) ? undefined : value)),
   medicine_type_id: yup.string().required("Medicine type is a required field"),
   store_id: yup.string().required("Store is a required field"),
+  company_id: yup.string().required("Company is a required field"),
   medicine_expiry_date: yup
     .date()
     .required()
@@ -92,4 +93,26 @@ const addMedicineSchema = yup.object().shape({
     .typeError("Invalid expiry date"),
 });
 
-export { loginSchema, addStoreSchema, addMedicineSchema };
+// Company Form Schema
+var expression =
+  /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+
+const addCompanySchema = yup.object().shape({
+  company_name: yup
+    .string()
+    .required("Company name is a required field")
+    .matches(/^(|.{3,60})$/, "Company name must be between 5-60 characters"),
+  company_code: yup
+    .string()
+    .required("Company Code is a required field")
+    .matches(/^(|.{3,45})$/, "Company code must be between 5-60 characters"),
+  company_website: yup
+    .string()
+    .required("Company Website is a required field")
+    .matches(expression, "Invalid Website Url"),
+  location: yup
+    .string()
+    .matches(/^(|.{2,45})$/, "Location must be between 5-45 characters"),
+});
+
+export { loginSchema, addStoreSchema, addMedicineSchema, addCompanySchema };

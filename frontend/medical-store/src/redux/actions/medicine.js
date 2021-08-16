@@ -18,27 +18,32 @@ const loadMeds = () => async (dispatch) => {
   }
 };
 
-const addMed = (data, history) => async (dispatch) => {
+const addMed = (data, history, setLoading) => async (dispatch) => {
   try {
+    setLoading(true);
     const res = await AXIOS_CLIENT.post("medicine/", data);
     dispatch({ type: ADD_MED, payload: res.data?.RECORD });
     dispatch(setAlert(res.data?.MSG, "success"));
+    setLoading(false);
     history.push("/medicines");
   } catch (error) {
+    setLoading(false);
     if (error) {
       dispatch(setAlert("Operation Failed !", "danger"));
     }
   }
 };
 
-const updateMed = (data, history) => async (dispatch) => {
+const updateMed = (data, history, setLoading) => async (dispatch) => {
   try {
+    setLoading(true);
     const res = await AXIOS_CLIENT.put("medicine/", data);
     dispatch({ type: UPDATE_MED, payload: res.data?.RECORD });
     dispatch(setAlert(res.data?.MSG, "success"));
+    setLoading(false);
     history.push("/medicines");
   } catch (error) {
-    console.log(error.response);
+    setLoading(false);
     if (error) {
       dispatch(setAlert("Operation Failed !", "danger"));
     }

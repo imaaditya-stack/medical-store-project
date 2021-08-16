@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -13,17 +13,28 @@ import withDrawer from "../Layout/Drawer/withDrawer";
 import FormFooter from "../Components/FormFooter";
 import Error from "../Components/Error";
 import AlertDialog from "../Components/Alert";
-import { LOAD_STORES, MED_TYPES } from "../Redux/actions/action.types";
+import {
+  LOAD_STORES,
+  MED_TYPES,
+  LOAD_COMPANIES,
+} from "../Redux/actions/action.types";
+import Loader from "../Components/Loader";
+import { loadCompanies } from "../Redux/actions/company";
 
 const AddMedicine = (props) => {
   const { record: data, update } = props.location.state || {};
 
+  // console.log("UPDATE DATA", data);
+
   const alerts = useSelector((state) => state.alertReducer) || [];
   const { medTypes } = useSelector((state) => state.medReducer) || {};
   const { stores } = useSelector((state) => state.storeReducer) || {};
+  const { companies } = useSelector((state) => state.companyReducer) || {};
 
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -42,8 +53,10 @@ const AddMedicine = (props) => {
       ),
     };
     !update
-      ? dispatch(addMed(newFormData, history))
-      : dispatch(updateMed({ ...newFormData, id: data?.id }, history));
+      ? dispatch(addMed(newFormData, history, setLoading))
+      : dispatch(
+          updateMed({ ...newFormData, id: data?.id }, history, setLoading)
+        );
   };
 
   useEffect(() => {
@@ -52,13 +65,14 @@ const AddMedicine = (props) => {
       axios
         .all([AXIOS_CLIENT.get("medicine/types/"), AXIOS_CLIENT.get("store/")])
         .then(
-          axios.spread((typesResponse, storeResponse) => {
+          axios.spread((typesResponse, storeResponse, companyResponse) => {
             // Set data for dynamic select options
             dispatch({ type: MED_TYPES, payload: typesResponse.data });
             dispatch({ type: LOAD_STORES, payload: storeResponse.data });
             reset({
               medicine_type_id: data?.medicine_type_id,
               store_id: data?.store_id,
+              // company_id: data?.company_id,
             });
           })
         )
@@ -69,11 +83,21 @@ const AddMedicine = (props) => {
       ? fetchData()
       : console.log("USING CACHED DATA FROM REDUX");
 
+    companies.length === 0
+      ? dispatch(loadCompanies())
+      : console.log("USING CACHED COMPANIES FROM REDUX");
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Container>
       <AlertDialog alerts={alerts} />
+      {loading && (
+        <div>
+          <Loader />
+          <br />
+        </div>
+      )}
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Row>
           <Col lg={6}>
@@ -183,6 +207,27 @@ const AddMedicine = (props) => {
                 {...register("medicine_expiry_date")}
               />
               <Error error={errors.medicine_expiry_date?.message} />
+            </Form.Group>
+          </Col>
+
+          <Col lg={6}>
+            <Form.Group className="mb-3">
+              <Form.Label>
+                Company <span className="text-danger">*</span>
+              </Form.Label>
+              <Form.Select
+                aria-label="Default select example"
+                defaultValue={data?.company_id}
+                {...register("company_id")}
+              >
+                <option value="">Select Company...</option>
+                {companies?.map((company) => (
+                  <option key={company.id} value={company.id}>
+                    {company.company_name}
+                  </option>
+                ))}
+              </Form.Select>
+              <Error error={errors.company_id?.message} />
             </Form.Group>
           </Col>
         </Row>

@@ -14,13 +14,16 @@ const authStateCheck = () => async (dispatch) => {
   }
 };
 
-const login = (data, history) => async (dispatch) => {
+const login = (data, history, setLoading) => async (dispatch) => {
+  setLoading(true);
   try {
     const res = await AXIOS_CLIENT.post("store/login/", data);
     handleAuthentication(res.data.token);
     dispatch({ type: AUTH_SUCCESS });
+    setLoading(false);
     history.push("/stores");
   } catch (error) {
+    setLoading(false);
     if (error.response) {
       if (error.response.status === 404) {
         dispatch(setAlert(error.response.data?.MSG, "danger"));

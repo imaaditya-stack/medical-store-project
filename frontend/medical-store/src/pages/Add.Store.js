@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,6 +12,7 @@ import withDrawer from "../Layout/Drawer/withDrawer";
 import FormFooter from "../Components/FormFooter";
 import Error from "../Components/Error";
 import AlertDialog from "../Components/Alert";
+import Loader from "../Components/Loader";
 
 const AddStore = (props) => {
   const { record: data, update } = props.location.state || {};
@@ -21,6 +22,8 @@ const AddStore = (props) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -33,8 +36,10 @@ const AddStore = (props) => {
 
   const onSubmit = (formData) => {
     !update
-      ? dispatch(addStore(formData, history))
-      : dispatch(updateStore({ ...formData, id: data?.id }, history));
+      ? dispatch(addStore(formData, history, setLoading))
+      : dispatch(
+          updateStore({ ...formData, id: data?.id }, history, setLoading)
+        );
   };
 
   useEffect(() => {
@@ -58,6 +63,12 @@ const AddStore = (props) => {
   return (
     <Container>
       <AlertDialog alerts={alerts} />
+      {loading && (
+        <div>
+          <Loader />
+          <br />
+        </div>
+      )}
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Row>
           <Col lg={6}>

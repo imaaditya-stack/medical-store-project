@@ -12,6 +12,8 @@ import {
   ManageStore,
   NotFound,
 } from "./Pages";
+import ManageCompany from "./Pages/manage.company";
+import AddCompany from "./Pages/add.company";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -32,6 +34,8 @@ const App = () => {
         <PrivateRoute path="/add-store" component={AddStore} />
         <PrivateRoute path="/medicines" component={ManageMedicine} />
         <PrivateRoute path="/add-medicine" component={AddMedicine} />
+        <PrivateRoute path="/companies" component={ManageCompany} />
+        <PrivateRoute path="/add-company" component={AddCompany} />
         <Route path="*" component={NotFound} />
       </Switch>
     </Router>

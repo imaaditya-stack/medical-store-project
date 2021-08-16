@@ -20,13 +20,16 @@ const loadStores = () => async (dispatch) => {
   }
 };
 
-const addStore = (data, history) => async (dispatch) => {
+const addStore = (data, history, setLoading) => async (dispatch) => {
   try {
+    setLoading(true);
     const res = await AXIOS_CLIENT.post("store/", data);
     dispatch({ type: ADD_STORE, payload: res.data?.RECORD });
     dispatch(setAlert(res.data?.MSG, "success"));
+    setLoading(false);
     history.push("/stores");
   } catch (error) {
+    setLoading(false);
     if (error) {
       if (error.response.status === 400) {
         if (error.response.data.username) {
@@ -37,13 +40,16 @@ const addStore = (data, history) => async (dispatch) => {
   }
 };
 
-const updateStore = (data, history) => async (dispatch) => {
+const updateStore = (data, history, setLoading) => async (dispatch) => {
   try {
+    setLoading(true);
     const res = await AXIOS_CLIENT.put("store/", data);
     dispatch({ type: UPDATE_STORE, payload: res.data?.RECORD });
     dispatch(setAlert(res.data?.MSG, "success"));
+    setLoading(false);
     history.push("/stores");
   } catch (error) {
+    setLoading(false);
     if (error) {
       if (error.response?.status === 400) {
         if (error.response?.data.username) {

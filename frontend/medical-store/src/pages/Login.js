@@ -7,16 +7,20 @@ import { loginSchema } from "../Validations/yup.schemas";
 import Error from "../Components/Error";
 import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
 import AlertDialog from "../Components/Alert";
+import Loader from "../Components/Loader";
 import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
 
 const Login = () => {
   const alerts = useSelector((state) => state.alertReducer) || [];
+
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    dispatch(login(data, history));
+    dispatch(login(data, history, setLoading));
   };
 
   const {
@@ -36,6 +40,7 @@ const Login = () => {
       <Container className="form_container">
         <Form onSubmit={handleSubmit(onSubmit)}>
           <AlertDialog alerts={alerts} />
+          {loading && <Loader />}
           <Form.Group className="mb-3" controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control
